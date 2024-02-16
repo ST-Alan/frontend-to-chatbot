@@ -1,10 +1,13 @@
 import { useState } from "react"
-import { GptMessage, MyMessage, TextMessageBox, TextMessageBoxFile, TextMessageBoxSelect, TypingLoader } from "../../components"
+import { GptMessage, GptOrthographyMessage, MyMessage, TextMessageBoxSelect, TypingLoader } from "../../components"
+import { orthographyUseCase } from "../../../core/use-cases";
+import { OrthographyResponse } from '../../../interfaces/orthography.response';
 
 
 interface Message{
   text:string;
   isGpt:boolean;
+  info?:OrthographyResponse
 }
 
 
@@ -19,6 +22,21 @@ export const OrthographyPage = () => {
     setMessages((prev)=> [...prev, {text:text, isGpt:false}])
 
     //TODO Desde aca mandar a llamar el UseCase
+
+    // const data = await orthographyUseCase(text);
+    // Lo desestructuro, borro todos los data.ok data.userScore|errors|message y lo dejo asi:
+    const {ok, errors, message,userScore} = await orthographyUseCase(text);
+    // console.log(data)
+
+    if(!ok){
+      setMessages((prev)=> [...prev, {text:'No se pudo realizar la conexion', isGpt:true}])
+    }else{
+      setMessages((prev)=> [...prev, {
+        text:message,
+        isGpt:true,
+        info:{ userScore,errors,message }
+      }])
+    }
 
     setIsLoading(false);
 
@@ -38,7 +56,17 @@ export const OrthographyPage = () => {
             messages.map((message, index)=>(
               message.isGpt
               ? (
-                <GptMessage key={index} text="Esto es OpenAi" />
+                // Como lo tengo en duro, creo un gpt message que se encargue de recibirlo tal cual viene de chatgpt
+                // <GptMessage key={index} text="Esto es OpenAi" />
+                <GptOrthographyMessage
+                 key={index}
+                //  Todo esto:
+                //  errors={message.info!.errors}
+                //  userScore={message.info!.userScore}
+                //  message={message.info!.message}
+                // Es equivalente a esto:
+                {...message.info!}
+                />
               )
               : (
                 <MyMessage key={index} text={message.text} />
@@ -75,7 +103,8 @@ export const OrthographyPage = () => {
     /> */}
 
     <TextMessageBoxSelect
-    onSendMessage={console.log}
+    // onSendMessage={console.log}
+    onSendMessage={handlePost}
       options={[{id:"1", text:"Hola"},{id:"2", text:"Mundo"} ]}
     />
 
