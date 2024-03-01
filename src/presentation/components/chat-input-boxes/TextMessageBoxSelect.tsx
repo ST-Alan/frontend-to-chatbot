@@ -27,6 +27,7 @@ export const TextMessageBoxSelect = ({onSendMessage,placeHolder,disableCorrectio
 
         //Cuando mande el message quiero verificar si el largo del mensaje es mayor a cero, sino es mando un return para que no haga nada
         if(message.trim().length === 0) return;
+        if(selectedOption === '') return;
         //Si es mayor a cero
         onSendMessage(message, selectedOption)
         setMessage('')

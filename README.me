@@ -1,3 +1,41 @@
+## Como funciona esto:
+
+En router src/presentation/router/router.tsx se definen las URL de la interfaz, cada componente es el mismo de una p[a]gina creada.
+En pages se crea la interfaz con la que se trabaja el frontend src/presentation/pages/index.ts segun cada interfaz se crea un folder y un archivo tsx 
+En core/use-case se conecta al backend y obtiene la respuesta
+En src/presentation/pages/paginaCasoDeUso/paginaCasoDeUso.tsx Se muestra en el frontend
+
+
+
+<hr>
+Decoder que se reemplaza por el reader en el stream:
+
+Se puede ver en /Users/dev/Recursos/Apps/whatsappAPI/frontend/src/core/use-cases/prosConsStream.use-case.ts
+         // const decoder = new TextDecoder();
+        
+                // let text = '';
+        // while(true){
+        //     // Aqui vamos a tomar 2 cosas del reader
+        //     const {value, done} = await reader.read();
+        //     // Cuando este el done, es decir cuando ya no hay mas informacion y se emitio nuestra respuesta
+        //     // Esto va a otro ByteLengthQueuingStrategy, pero aqui src/core/use-cases/translateTextStream.use-case.ts permite ver los valores en consola
+        //     if(done){
+        //         break;
+        //     }
+
+        //     const decodedChunk = decoder.decode(value, {stream:true});
+        //     text += decodedChunk;
+        //     console.log(text)
+        // }
+
+
+<hr>
+
+prosConsStreamGenerator.use-case.ts y prosConsStream.use-case hacen lo mismo.
+prosConsStreamGenerator.use-case lo hace con una funcion generdadora de JS
+
+
+
 Esto:
 menuRoutes.map(option =>(
     <NavLink
