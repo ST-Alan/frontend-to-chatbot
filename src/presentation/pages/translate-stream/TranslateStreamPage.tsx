@@ -1,6 +1,6 @@
-import {  useState } from "react"
+import {  useRef, useState } from "react"
 import { GptMessage, MyMessage, TypingLoader, TextMessageBoxSelect } from "../../components";
-import { translateTexUsecase } from "../../../core/use-cases";
+import { translateTexStreamUseCase } from "../../../core/use-cases";
 
 
 
@@ -23,29 +23,68 @@ const languages = [
   { id: "ruso", text: "Ruso" },
 ];
 
-export const TranslatePage = () => {
+export const TranslateStreamPage = () => {
+
+  const abortController = useRef(new AbortController())
+  const isRunning = useRef(false)
 
   const [isLoading, setIsLoading] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
 
   const handlePost = async(prompt:string, lang:string) =>{
 
-    setIsLoading(true)
+    if(isRunning.current){
+      abortController.current.abort()
+      abortController.current = new AbortController()
+    }
 
+
+    setIsLoading(true)
+    isRunning.current = true;
     const newMessage = `Traduce: "${ prompt }" al idioma ${ lang }`
     // Defino preview como los mensajes anteriores y tengo uno donde el texto es igual al texto y isGpt en False
     setMessages((prev)=> [...prev, {text:newMessage, isGpt:false}])
 
     //TODO Desde aca mandar a llamar el UseCase
 
-    const {ok, message} = await translateTexUsecase( prompt,lang) //abortController.current.signal 
+    // await translateTexStreamUseCase( prompt,lang) //abortController.current.signal 
+    // Ahora la constante reader va a hacer igual al await translateTexStreamUseCase( prompt,lang)
+    // En esta linea const reader = al reader del src/core/use-cases/translateTextStream.use-case.ts porque retorna un reader
+    const reader = await translateTexStreamUseCase( prompt,lang, abortController.current.signal) //abortController.current.signal 
     setIsLoading(false);
-    if(!ok){
-      return(message)
-    }
+
+    if(!reader) return alert('No se pudo generar el reader')
 
     // TODO: Agregar el mensaje de isGPT en true su todo sale bien
-    setMessages((prev)=> [...prev, {text:message, isGpt:true}])
+
+    // Tan pronto se tiene el reader ya se puede quitar el setIsLoading porque ya vamos a tener informacion
+    // Entonces aca se genera el ultimo mensaje
+    // Aqui se hace el decoder que en un principio estaba en el .use-case
+    const decoder = new TextDecoder();
+    let message = '';
+    setMessages((messages)=> [...messages, {text:message, isGpt:true}]);
+
+    while(true){
+      const {value, done} = await reader.read();
+      //Si el mensaje esta listo, esta en done, entonces esta completo, hacemos el break
+      if(done)break;
+      //Caso contrario, tenemos un pedazo de texto por evalue, por lo que veo aca el decode
+
+      const decodedChunk = decoder.decode(value,{stream:true});
+      message += decodedChunk;
+
+      setMessages((messages)=> {
+        const newMessages = [...messages]
+        newMessages[newMessages.length - 1 ].text = message
+        return newMessages
+      });
+
+      isRunning.current = false;
+
+    }
+
+
+
   }
 
 
