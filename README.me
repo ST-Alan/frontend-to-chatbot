@@ -1,9 +1,40 @@
 ## Como funciona esto:
 
-En router src/presentation/router/router.tsx se definen las URL de la interfaz, cada componente es el mismo de una p[a]gina creada.
+En router src/presentation/router/router.tsx se definen las URL de la interfaz, cada componente es el mismo de una p[a]gina creada en: src/presentation/pages
 En pages se crea la interfaz con la que se trabaja el frontend src/presentation/pages/index.ts segun cada interfaz se crea un folder y un archivo tsx 
-En core/use-case se conecta al backend y obtiene la respuesta
+En src/core/use-case se conecta al backend y obtiene la respuesta
 En src/presentation/pages/paginaCasoDeUso/paginaCasoDeUso.tsx Se muestra en el frontend
+
+En src/presentation/template/Chat-template.tsx esta la plantilla de la interfaz de mensaje. Se copia en cada pagina y se adapta
+En src/presentation/components/chat-input-boxes estan los diversosn inputs para enviar el prompt, puede ser con archivo, seleccionando una opcion o un mensaje de texto plano
+
+En las paginas:
+1.- El handlepost->  const handlePost = async(text:string) recibe el texto, cuando hay audio, recibe el audio, cuando hay imagenes lo mismo.
+Cuando son idiomas recibe el prompt mas el idioma. 
+En general el handlepost recibe todo lo que se vaya a enviar desde el chat
+
+
+2.- El input puede tener el accept que especifica los formatos aceptados en el envio de lo que se escribe
+    <TextMessageBoxFile
+      onSendMessage={handlePost}
+      placeHolder="Escribe aqui tu mensaje"
+      disableCorrections
+      accept=""
+    />
+
+En este caso el TextMessageBoxFile se llama de src/presentation/components/chat-input-boxes/TextMessageBoxFile.tsx, entonces se agrega en ese archivo para poder usarlo
+
+El input en src/presentation/components/chat-input-boxes/TextMessageBoxFile.tsx, este aceptar esta en:
+
+<input
+    type="file"
+    ref={inputFileRef}
+    accept={accept}
+    //Aca es posible agregar un muiltiselect
+    onChange={(e)=>setSelectedFile(e.target.files?.item(0))}
+    hidden
+/>
+
 
 
 
