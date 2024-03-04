@@ -9,3 +9,5 @@ export * from './translateTextStream.use-case'
 export * from './translateTextStreamGenerator.use-case'
 
 export * from './textToAudio.use-case'
+
+export * from './audioToText.use-case'

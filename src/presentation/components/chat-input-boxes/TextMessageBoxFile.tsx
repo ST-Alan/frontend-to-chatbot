@@ -1,7 +1,7 @@
 import { FormEvent, useRef, useState } from "react";
 
 interface Props {
-    onSendMessage:(message:string)=>void;
+    onSendMessage:(message:string, file:File)=>void; // Aqui el file es el audio. File esta en node asi que no hay que importar nada
     placeHolder?: string;
     disableCorrections?: boolean;
     accept?: string; // Algo como image/*
@@ -24,10 +24,12 @@ export const TextMessageBoxFile = ({onSendMessage,placeHolder,disableCorrections
 
 
         //Cuando mande el message quiero verificar si el largo del mensaje es mayor a cero, sino es mando un return para que no haga nada
-        if(message.trim().length === 0) return;
+        // if(message.trim().length === 0) return;// En audio to text, el texto es opcional, por lo que se comenta
+        if( !selectedFile ) return; // Si el archivo seleccionado es nulo, no hagas nada
         //Si es mayor a cero
-        onSendMessage(message)
+        onSendMessage(message, selectedFile) // Agrego el archivo selccionado
         setMessage('')
+        setSelectedFile(null);
 
         // console.log('HandleSendMessage')
     }
