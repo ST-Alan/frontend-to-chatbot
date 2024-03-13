@@ -1,9 +1,11 @@
 ## Como funciona esto:
 
+0.- Configuracion
 En router src/presentation/router/router.tsx se definen las URL de la interfaz, cada componente es el mismo de una p[a]gina creada en: src/presentation/pages
 En pages se crea la interfaz con la que se trabaja el frontend src/presentation/pages/index.ts segun cada interfaz se crea un folder y un archivo tsx 
 En src/core/use-case se conecta al backend y obtiene la respuesta
-En src/presentation/pages/paginaCasoDeUso/paginaCasoDeUso.tsx Se muestra en el frontend
+La respuesta se envia a src/presentation/pages/paginaDelCasoDeUso/
+En src/presentation/pages/paginaDelCasoDeUso/paginaDelCasoDeUso.tsx Se muestra en el frontend
 
 En src/presentation/template/Chat-template.tsx esta la plantilla de la interfaz de mensaje. Se copia en cada pagina y se adapta
 En src/presentation/components/chat-input-boxes estan los diversosn inputs para enviar el prompt, puede ser con archivo, seleccionando una opcion o un mensaje de texto plano

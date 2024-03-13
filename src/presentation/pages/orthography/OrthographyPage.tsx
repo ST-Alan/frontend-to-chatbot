@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { GptMessage, GptOrthographyMessage, MyMessage, TextMessageBoxSelect, TypingLoader } from "../../components"
+import { GptMessage, GptOrthographyMessage, MyMessage, TextMessageBox, TypingLoader } from "../../components"
 import { orthographyUseCase } from "../../../core/use-cases";
 import { OrthographyResponse } from '../../../interfaces/orthography.response';
 
@@ -102,10 +102,9 @@ export const OrthographyPage = () => {
       placeHolder="Escribe aqui tu mensaje"
     /> */}
 
-    <TextMessageBoxSelect
+    <TextMessageBox
     // onSendMessage={console.log}
     onSendMessage={handlePost}
-      options={[{id:"1", text:"Hola"},{id:"2", text:"Mundo"} ]}
     />
 
 
