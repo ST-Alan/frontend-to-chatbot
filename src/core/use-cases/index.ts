@@ -11,3 +11,7 @@ export * from './translateTextStreamGenerator.use-case'
 export * from './textToAudio.use-case'
 
 export * from './audioToText.use-case'
+
+export * from './imageGeneration.use-case'
+
+export * from './imageVariation.use-case'

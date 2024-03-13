@@ -2,6 +2,8 @@ export * from './chat-bubles/GptMessage';
 export * from './chat-bubles/MyMessage';
 export * from './chat-bubles/GptOrthographyMessage'
 export * from './chat-bubles/GptMessageAudio'
+export * from './chat-bubles/GptMessageImage'
+export * from './chat-bubles/GptMessageSelectableImage'
 
 export * from './chat-input-boxes/TextMessageBox'
 export * from './chat-input-boxes/TextMessageBoxFile'
