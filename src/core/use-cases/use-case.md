@@ -158,3 +158,8 @@ export const imageVariationUseCase = async (originalImage:string):Promise<Genera
 
 }
 //Salvo la constante imageVariationUseCase, y lo que se comento todo lo demas es igual a rc/core/use-cases/imageGeneration.use-case.ts
+--------------------------------------------------------------------------------------------------------------
+# Group
+Agrupar los casos de uso por carpetas. 
+
+Es lo mejor para que sea facil de mantener
