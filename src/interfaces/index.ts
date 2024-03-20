@@ -5,3 +5,5 @@ export * from './prosCons.response'
 export * from './translate.response'
 
 export * from './audioToText.response'
+
+export * from './assistant.response'

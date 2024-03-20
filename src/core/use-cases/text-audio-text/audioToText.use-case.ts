@@ -1,5 +1,5 @@
 //Usualmente las interfaces van con un type para que no importe nada cuando estemos haciendo el build de produccion
-import type { AudioToTextResponse } from "../../interfaces";
+import type { AudioToTextResponse } from "../../../interfaces";
 
 //Aca creo que primero va el text/message o el propmt
 export const audioToTextUseCase = async(audioFile:File, prompt?:string)=>{

@@ -10,6 +10,21 @@ En src/presentation/pages/paginaDelCasoDeUso/paginaDelCasoDeUso.tsx Se muestra e
 En src/presentation/template/Chat-template.tsx esta la plantilla de la interfaz de mensaje. Se copia en cada pagina y se adapta
 En src/presentation/components/chat-input-boxes estan los diversosn inputs para enviar el prompt, puede ser con archivo, seleccionando una opcion o un mensaje de texto plano
 
+La variable de entorno 
+
+VITE_GPT_API=http://localhost:3000/gpt
+
+Es el endpoint que libera el backend, por lo que se consume del backend http://localhost:3000/gpt
+
+Para trabajar con el asistente se crea VITE_ASSISTANT_API=http://localhost:3000/jarvis-assistant porque el asistente trabaja cpn otro modulo y con otra ruta
+
+
+
+
+
+
+
+
 En las paginas:
 1.- El handlepost->  const handlePost = async(text:string) recibe el texto, cuando hay audio, recibe el audio, cuando hay imagenes lo mismo.
 Cuando son idiomas recibe el prompt mas el idioma. 
@@ -102,3 +117,6 @@ Y esto lo dejo asi:
 menuRoutes.map(option =>(
                 <SidebarMenuItem key={option.to} {...option} />
             ))
+
+------------------------------------------------------------------------------------------------------------------------
+Falta un endpoint para mostrar todos los mensajes
