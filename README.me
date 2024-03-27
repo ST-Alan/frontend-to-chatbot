@@ -1,4 +1,28 @@
 ## Como funciona esto:
+00.- Publicar el proyecto:
+    
+    En la linea 7 del archivo vite.config.ts:
+        Se debe comentar si se va a utilizar el chatbot en el directorio principal
+        Si se va a agregar esta app a un directorio dentro del principal, se debe agregar el nombre del directorio como valor a la propiedad 'base'
+            Propiedad: 'Valor'
+
+            base: '/react/'
+
+            Al cambiar esta propiedad:valor se modifica el link de local
+
+    
+    En la linea 2 de package.json:
+        Si se instala en el directorio principal o en un directorio dentro del principal Se debe configurar el link de publicacion como valor de la propiedad "home".
+        "homepage":"https://chatbot.aleximcorp.net",
+
+    
+    En la linea 89 de src/presentation/router/router.tsx
+        El valor de la propiedad path se deja con un slash si es en el directorio principal.
+        El valor se modifica y se le agrega el nombre del directorio interno que se va a usar.
+                path:"/react/", //Esto seria si el directorio interno de la app es react. La url para ver seria: https://chatbot.aleximcorp.net/react/
+                path:"/", //Esto es si la app se instalara en el directorio principal
+
+
 
 0.- Configuracion
 En router src/presentation/router/router.tsx se definen las URL de la interfaz, cada componente es el mismo de una p[a]gina creada en: src/presentation/pages
