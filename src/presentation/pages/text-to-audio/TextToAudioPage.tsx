@@ -16,7 +16,7 @@ interface AudioMessage {
   text: string;
   isGpt: boolean;
   audio: string;
-  type:'audio';
+  type:'audio'
 }
 
 // todo| Las interfaces y el type lo hago para luego validar si el mensaje es de texto o de audio 

@@ -5,77 +5,77 @@ import { DashboardLayout } from "../layouts/DashboardLayout";
 
 export const menuRoutes = [
     {
-      to: "react/orthography",
+      to: "orthography",
       icon: "fa-solid fa-spell-check",
       title: "Ortografía",
       description: "Corregir ortografía",
       component: <OrthographyPage />
     },
     {
-      to: "react/pros-cons",
+      to: "pros-cons",
       icon: "fa-solid fa-code-compare",
       title: "Pros & Cons",
       description: "Comparar pros y contras",
       component: <ProsConsPage />
     },
     {
-      to: "react/pros-cons-stream",
+      to: "pros-cons-stream",
       icon: "fa-solid fa-water",
       title: "Como stream",
       description: "Con stream de mensajes",
       component: <ProsConsStreamPage />
     },
     {
-      to: "react/translate",
+      to: "translate",
       icon: "fa-solid fa-language",
       title: "Traducir",
       description: "Textos a otros idiomas",
       component: <TranslatePage />
     },
     {
-      to: "react/translate-stream",
+      to: "translate-stream",
       icon: "fa-solid fa-dumbbell",
       title: "Traducir Stream",
       description: "Textos a otros idiomas",
       component: <TranslateStreamPage />
     },
     {
-      to: "react/translate-stream-function",
+      to: "translate-stream-function",
       icon: "fa-solid fa-user-astronaut",
       title: "Traducir con Stream y Funcion Generadora",
       description: "Textos a otros idiomas",
       component: <TranslateStreamGeneratorPage />
     },
     {
-      to: "react/text-to-audio",
+      to: "text-to-audio",
       icon: "fa-solid fa-podcast",
       title: "Texto a audio",
       description: "Convertir texto a audio",
       component: <TextToAudioPage />
     },
     {
-      to: "react/audio-to-text",
+      to: "audio-to-text",
       icon: "fa-solid fa-comment-dots",
       title: "Audio a texto",
       description: "Convertir audio a texto",
       component: <AudioToTextPage />
     },
     {
-      to: "react/image-generation",
+      to: "image-generation",
       icon: "fa-solid fa-image",
       title: "Imágenes",
       description: "Generar imágenes",
       component: <ImageGenerationPage />
     },
     {
-      to: "react/image-tunning",
+      to: "image-tunning",
       icon: "fa-solid fa-wand-magic",
       title: "Editar imagen",
       description: "Generación continua",
       component: <ImageTunningPage />
     },
     {
-      to: "react/assistant",
+      to: "assistant",
       icon: "fa-solid fa-user",
       title: "Asistente",
       description: "Información del asistente",
