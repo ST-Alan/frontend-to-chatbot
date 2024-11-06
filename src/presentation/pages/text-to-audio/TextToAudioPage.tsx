@@ -1,8 +1,9 @@
 import { useState } from "react"
-import { GptMessage, MyMessage, TypingLoader, TextMessageBoxSelect, GptMessageAudio } from "../../components";
+import { GptMessage, MyMessage, TypingLoader, GptMessageAudio, TextMessageBoxSelectSwapiVoice } from "../../components";
 import { textToAudioUseCase } from "../../../core/use-cases";
 
-const displaimer = `¿Qué audio quieres generar hoy?
+const disclaimer = `Vamos a generar una nueva saga de Star War.
+Inventa una emoción y vamos a ello..!
 * Todo el audio generado es por AI`
 
 
@@ -31,30 +32,43 @@ const voices = [
   {id: 'shimmer',text:'shimmer'},
 ]
 
+const idFilm = [
+  { id: '1', text:1 },
+  { id: '2', text:2 },
+  { id: '3', text:3 },
+  { id: '4', text:4 },
+  { id: '5', text:5 },
+  { id: '6', text:6 },
+  { id: '7', text:7 },
+];
+
 export const TextToAudioPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
 
 
-  //Recordar porque a este parametro le puse text y no prompt
-  const handlePost = async(text:string, selectedVoice:string) =>{
+  const handlePost = async( selectedVoice:string,idFilm:string,idPerson:string,idPlanet:string,idSpecies:string,idStarship:string,idVehicle:string,emocion:string ) =>{
     setIsLoading(true);
-    // Defino preview como los mensajes anteriores y tengo uno donde el texto es igual al texto y isGpt en False
-    setMessages((prev)=> [...prev, {text:text, isGpt:false, type:'text'}]);
 
-    //TODO Desde aca mandar a llamar el UseCase
-    //Este caso de uso tiene como retorno una respuesta de un archivo mp3. Todo aca viene del caso de uso respectivo
-    const {ok, message, audioUrl} = await textToAudioUseCase( text, selectedVoice );
+    const newMessage = `Busca en SWAPI 
+    el film que tenga el id:"${ idFilm }"
+    el id:${ idPerson } para obtener un personaje,
+    el id:${ idPlanet } para obtener un planeta,
+    el id:${ idSpecies } para obtener una especie,
+    el id:${ idStarship } para obtener una starship,
+    el id:${ idVehicle } para obtener un vehículo,
+    una vez obtenidos estos datos, toma la emoción ${emocion} y crea un resumen de una nueva saga de la película, basada en estos datos que te estoy brindando con la voz de ${selectedVoice}
+    `
+
+
+    setMessages((prev)=> [...prev, {text:newMessage, isGpt:false, type:'text'}]);
+
+    const {ok, message, audioUrl} = await textToAudioUseCase( selectedVoice,Number(idFilm),idPerson,idPlanet,idSpecies,idStarship,idVehicle,emocion );
     setIsLoading(false);
     // Si no esta bien, genera este alert
     if (!ok) return alert('No se genero el audio correctamente');
 
-    // TODO: Agregar el mensaje de isGPT en true. Es decir si todo sale bien
-    //Como el url podria venir como nulo le agrego ! para evaluarlo. Queda asi:audioUrl!. De lo contrario da error
     setMessages((prev)=> [...prev, {text: `${selectedVoice} -  ${message}`, isGpt:true, type:'audio', audio:audioUrl!, }]);
-
-
-
 
   }
 
@@ -65,7 +79,7 @@ export const TextToAudioPage = () => {
         <div className="grid grid-cols-12 gap-y-2">
           {/* Mensaje de Bienvenida */}
           {/* Aqui se llaman a las chat bubble */}
-          <GptMessage text={displaimer} />
+          <GptMessage text={disclaimer} />
 
           {
             messages.map((message, index)=>(
@@ -107,13 +121,18 @@ export const TextToAudioPage = () => {
       </div>
 
 
-    <TextMessageBoxSelect
+    <TextMessageBoxSelectSwapiVoice
         onSendMessage={handlePost}
-        placeHolder="Escribe aqui tu mensaje"
-        disableCorrections options={voices}    />
-
-
-
+        placeHolder="Escribe una emoción o una trama: Amor, Acción, Trama de Romeo y Julieta"
+        pHIdPerson="Escribe el id de Personaje"
+        pHIdPlanet="Escribe el id de Planeta"
+        pHIdSpecies="Escribe el id de Especie"
+        pHIdStarship="Escribe el id de Starship"
+        pHIdVehicle="Escribe el id de Vehiculo"
+        disableCorrections 
+        options={idFilm}
+        optionsVoice={voices}
+    />
     </div>
   )
 

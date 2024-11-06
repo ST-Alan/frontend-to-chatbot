@@ -19,8 +19,10 @@ Para clonar este repositorio, sigue estos pasos:
 Crear un archivo .env
 Donde va a tener estas variables:
 
-VITE_GPT_API=https://9wpykorpvl.execute-api.us-east-2.amazonaws.com/production/new-film/
-VITE_GPT_API_SWAPI=https://9wpykorpvl.execute-api.us-east-2.amazonaws.com/production/swapi/
+
+VITE_GPT_API=API endpoint: https://zcbf74uea1.execute-api.us-east-2.amazonaws.com/production/new-film/
+VITE_GPT_API_SWAPI=API endpoint: https://zcbf74uea1.execute-api.us-east-2.amazonaws.com/production/swapi/
+
 
 En esas dos variables va a cambiar la url base que es la que le genere AWS en su entorno: https://zcbf74uea1.execute-api.us-east-2.amazonaws.com/production/
 

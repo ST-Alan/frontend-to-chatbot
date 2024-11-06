@@ -1,11 +1,10 @@
-import { Data } from "../../../interfaces";
-
+import { GetIDPlanet } from "../../../interfaces";
 
 interface Props{
-    text: Data | string;
+    text: GetIDPlanet| string;
 }
 
-export const MyMessage = ({text}:Props) => {
+export const MyMessagePlanet = ({text}:Props) => {
     const displayText = typeof text === 'string' 
     ? text 
     : `Crear nueva película`;
