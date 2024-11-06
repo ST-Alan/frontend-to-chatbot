@@ -1,14 +1,13 @@
-import { Data } from "../../../interfaces";
-
+import { GetIDPeople } from "../../../interfaces";
 
 interface Props{
-    text: Data | string;
+    text: GetIDPeople | string;
 }
 
-export const MyMessage = ({text}:Props) => {
+export const MyMessageGetPeople = ({text}:Props) => {
     const displayText = typeof text === 'string' 
     ? text 
-    : `Crear nueva película`;
+    : `Obtener el id del Film ===============`;
     return (
       <div className="col-start-6 col-end-13 p-3 rounded-lg">
           <div className="flex items-center justify-start flex-row-reverse">

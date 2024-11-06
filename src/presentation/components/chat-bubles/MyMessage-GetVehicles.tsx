@@ -1,11 +1,10 @@
-import { Data } from "../../../interfaces";
-
+import { GetIDVehiculos } from "../../../interfaces";
 
 interface Props{
-    text: Data | string;
+    text: GetIDVehiculos | string;
 }
 
-export const MyMessage = ({text}:Props) => {
+export const MyMessageVehicles = ({text}:Props) => {
     const displayText = typeof text === 'string' 
     ? text 
     : `Crear nueva película`;

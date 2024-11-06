@@ -18,14 +18,10 @@ export const TextMessageBox = ({onSendMessage,placeHolder,disableCorrections=fal
     const handleSendMessage = (event:FormEvent<HTMLFormElement>)=>{
         event.preventDefault();
 
-
-        //Cuando mande el message quiero verificar si el largo del mensaje es mayor a cero, sino es mando un return para que no haga nada
+        //Validar que haya algo escrito antes de enviar
         if(message.trim().length === 0) return;
-        //Si es mayor a cero
         onSendMessage(message)
         setMessage('')
-
-        // console.log('HandleSendMessage')
     }
   
     return (

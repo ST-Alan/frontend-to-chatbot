@@ -1,9 +1,7 @@
-export * from './orthography.response'
-
-export * from './prosCons.response'
-
-export * from './translate.response'
-
-export * from './audioToText.response'
-
-export * from './assistant.response'
+export * from './nuevoFilm.response'
+export * from './getIdFilm.response'
+export * from './getIdPeople.response'
+export * from './getIdPlanet.response'
+export * from './getIdSpecies.response'
+export * from './getIdStarships.response'
+export * from './getIdVehiculos.response'

@@ -1,50 +1,57 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import { OrthographyPage, ProsConsPage, ProsConsStreamPage, TranslatePage, TextToAudioPage, ImageGenerationPage, ImageTunningPage, AudioToTextPage, AssistantPage, TranslateStreamPage, TranslateStreamGeneratorPage } from "../pages";
+import {  CreateNewFilmPage, GetFilmIdPage, GetPeopleIdPage, GetPlanetIdPage, GetSpeciesIdPage, GetStarshipsIdPage, GetVehiclesIdPage, TextToAudioPage } from "../pages";
 import { DashboardLayout } from "../layouts/DashboardLayout";
 
 
 export const menuRoutes = [
     {
-      to: "orthography",
-      icon: "fa-solid fa-spell-check",
-      title: "Ortografía",
-      description: "Corregir ortografía",
-      component: <OrthographyPage />
+      to: "get-vehicles",
+      icon: "fa-solid fa-car",
+      title: "Get Vehicles by id",
+      description: "Petición que ve los vehiculos en SWAPI",
+      component: <GetVehiclesIdPage />
     },
     {
-      to: "pros-cons",
-      icon: "fa-solid fa-code-compare",
-      title: "Pros & Cons",
-      description: "Comparar pros y contras",
-      component: <ProsConsPage />
+      to: "get-starships",
+      icon: "fa-solid fa-rocket",
+      title: "Get Starships by Id",
+      description: "Petición a SWAPI para obtener las naves por id",
+      component: <GetStarshipsIdPage />
     },
     {
-      to: "pros-cons-stream",
-      icon: "fa-solid fa-water",
-      title: "Como stream",
-      description: "Con stream de mensajes",
-      component: <ProsConsStreamPage />
+      to: "get-species",
+      icon: "fa-brands fa-canadian-maple-leaf",
+      title: "Get Species by Id",
+      description: "Petición a SWAPI para obtener las especies por id",
+      component: <GetSpeciesIdPage />
     },
     {
-      to: "translate",
-      icon: "fa-solid fa-language",
-      title: "Traducir",
-      description: "Textos a otros idiomas",
-      component: <TranslatePage />
+      to: "get-planet",
+      icon: "fa-solid fa-earth-americas",
+      title: "Get Planet by Id",
+      description: "Petición a SWAPI para obtener planetas por id",
+      component: <GetPlanetIdPage />
     },
     {
-      to: "translate-stream",
-      icon: "fa-solid fa-dumbbell",
-      title: "Traducir Stream",
-      description: "Textos a otros idiomas",
-      component: <TranslateStreamPage />
-    },
-    {
-      to: "translate-stream-function",
+      to: "get-people",
       icon: "fa-solid fa-user-astronaut",
-      title: "Traducir con Stream y Funcion Generadora",
-      description: "Textos a otros idiomas",
-      component: <TranslateStreamGeneratorPage />
+      title: "Get People by id",
+      description: "Petición a SWAPI para obtener las personas por id",
+      component: <GetPeopleIdPage />
+    },
+    {
+      to: "get-films",
+      icon: "fa-solid fa-user-astronaut",
+      title: "Get Film by id",
+      description: "Petición SWAPI para obtener film por id",
+      component: <GetFilmIdPage />
+    },
+    {
+      to: "post-db-create-new-film",
+      icon: "fa-solid fa-film",
+      title: "Post - DB - Nuevo Films",
+      description: "Obtiene los datos de SWAPI, lo envía a openAi para que cree una nueva saga, y guarda la nueva saga en la base de datos",
+      component: <CreateNewFilmPage />
     },
     {
       to: "text-to-audio",
@@ -52,34 +59,6 @@ export const menuRoutes = [
       title: "Texto a audio",
       description: "Convertir texto a audio",
       component: <TextToAudioPage />
-    },
-    {
-      to: "audio-to-text",
-      icon: "fa-solid fa-comment-dots",
-      title: "Audio a texto",
-      description: "Convertir audio a texto",
-      component: <AudioToTextPage />
-    },
-    {
-      to: "image-generation",
-      icon: "fa-solid fa-image",
-      title: "Imágenes",
-      description: "Generar imágenes",
-      component: <ImageGenerationPage />
-    },
-    {
-      to: "image-tunning",
-      icon: "fa-solid fa-wand-magic",
-      title: "Editar imagen",
-      description: "Generación continua",
-      component: <ImageTunningPage />
-    },
-    {
-      to: "assistant",
-      icon: "fa-solid fa-user",
-      title: "Asistente",
-      description: "Información del asistente",
-      component: <AssistantPage />
     },
   ];
 
