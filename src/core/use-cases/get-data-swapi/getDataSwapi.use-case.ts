@@ -2,6 +2,7 @@ import { GetIDFilm } from "../../../interfaces";
 
 
 export const getDataSwapi = async(id:string) => {
+
   try {
     const resp = await fetch(`${import.meta.env.VITE_GPT_API_SWAPI}get-films?id=${Number(id)}`)
 
